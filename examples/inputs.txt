@@ -1,0 +1,2 @@
+Could you write the ADT structure that you would use in this case to provide record of both syntax tree, part of speech tagging, and referential expression tagging?
+If on quick reflection you thought “more or less equally”, you are not alone. I asked 5 super-smart PhDs this question and they all had the same initial intuition.
