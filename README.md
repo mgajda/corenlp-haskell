@@ -24,3 +24,5 @@ It should be possible to exercise project on [TravisCI](http://travis-ci.org).
 * output in `.conll` format similar SyntaxNet,
 * output in Stanford CoreNLP native `.xml` serialization,
 * output in Stanford CoreNLP web server targetted `.json` serialization.
+
+Nice visualizations of the data available on [DisplayCy website](https://demos.explosion.ai/displacy/).
