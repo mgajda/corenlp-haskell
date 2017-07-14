@@ -12,6 +12,7 @@ import           Data.Map
 import           GHC.Generics    (Generic,Rep(..),(:+:)(..))
 import           GHC.TypeLits
 import           Protolude       hiding(fromLabel)
+import qualified Data.Text       as T
 import qualified GHC.Generics    as G
 
 class (Ord label) => Label label where
@@ -25,7 +26,7 @@ class (Ord label) => Label label where
 
 
 fromLabelText :: (Label label) => Text -> Maybe label
-fromLabelText t = lookup t labelMap
+fromLabelText t = lookup (T.toLower t) labelMap
 
 toLabelText   :: (Label label) => label -> Text
 toLabelText l =  fromMaybe (error "imposible branch on Data.Label") 
@@ -133,7 +134,7 @@ instance (GLabel f, GLabel g) => GLabel ( f :+: g) where
 
 -- | The label of a constructor without arguments is the constructor's name itself
 instance (KnownSymbol constructor) => GLabel (C1 ('MetaCons constructor a b) U1) where
-  gLabelMap _ = [( toSL $ symbolVal (Proxy :: Proxy constructor) , M1 U1)] 
+  gLabelMap _ = [( T.toLower . toSL $ symbolVal (Proxy :: Proxy constructor) , M1 U1)] 
 
 
 instance (Label labelType) => GLabel (C1 meta1 (S1 meta2 (K1 meta3 labelType))) where

@@ -57,9 +57,10 @@ library
                              , TypeOperators
                              , TypeSynonymInstances
 
-  build-depends:       protolude
-                     , base
+  build-depends:       base
                      , containers
+                     , pretty-show
+                     , protolude
                      , split
                      , text
                      
