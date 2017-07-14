@@ -1,36 +1,77 @@
 
 
-module Data.ParsedSentence where
+module Data.ParsedSentence ( ParsedSentence(..)
+                           , ParsedToken(..)
+                           , parseConNll
+                           ) where
 
 
-import           Protolude
 import           Data.CoNLL
+import           Data.CoNLL
+import           Data.Label
+import           Data.Map
+import           Protolude
+
+
+data ParsedSentence pos rel = ParsedSentence
+       { _token         :: ParsedToken pos 
+       , _sentenceIndex :: Int
+       , _relations     :: [(rel,ParsedSentence pos rel)] 
+       } deriving(Show,Read,Eq,Generic,Ord)
+
+data ParsedToken pos = ParsedToken
+       { _tokenPOS      :: pos
+       , _tokenText     :: Text
+       , _tokenLemma    :: Text
+       } deriving(Show,Read,Eq,Generic,Ord)
 
 
 
-data ParsedSentence model = ParsedSentence
-        { _leftRelations   :: GrammarArc  model
-        , _token           :: ParsedToken model
-        , _rightRelations  :: GrammarArc  model
-        } deriving(Generic)
-
-data ParsedToken model = ParsedToken
-        { _tokFinePOS      :: FinePOS   model -- ^ For example `DT`
-        , _tokCoarsePOS    :: CoarsePOS model -- ^ For example `DET`
-        , _tokToken        :: Token     model -- ^ The token after normalization, for example `"which"`
-        , _tokSentencePart :: Sentence  model -- ^ The text segment from where it got extracted, for example `Which, `
-        } deriving(Generic)
+parseConNll :: (Label pos, Label rel) => Text -> Maybe [ParsedSentence pos rel]
+parseConNll file = traverse parsedConNllSentence =<< parseConllOutput file
 
 
-type GrammarArc model = [( GrammRel model, ParsedSentence model)]
+parsedConNllSentence :: [CorenlpCoNLL pos rel] -> Maybe (ParsedSentence pos rel)
+parsedConNllSentence conllLines = do (root,_,_) <- lookup 0 partialParsed
+                                     return root{ _relations = parsedSentenceFrom 0
+                                                }
+  where
 
-type CommonConst a = (Eq a,Read a,Show a)
 
-class NlpModel model where
+    partialParsed  = fromList $ partial <$> conllLines
 
-  type FinePOS   model :: *
-  type CoarsePOS model :: *
-  type Token     model :: *
-  type Sentence  model :: *
-  type GrammRel  model :: *
-  
+
+    partialParsed' = fromListWith (++) [ (head_,[(x,i,rel)]) 
+                                       | (i,(x,head_,rel)) <- assocs partialParsed
+                                       ]
+
+
+    
+
+    parsedSentenceFrom n = let relations = fromMaybe [] $ lookup n partialParsed'
+                            
+                            in [ ( rel
+                                 , sentenceNode{ _relations = parsedSentenceFrom i
+                                               } 
+                                 )
+
+                               | (sentenceNode,i,rel) <- relations
+                               ]
+
+
+
+    partial CorenlpCoNLL{..} =  ( _outFileOrdIndex
+                                , ( ParsedSentence
+                                     { _token = ParsedToken
+                                          { _tokenPOS    = _outFilePOS
+                                          , _tokenText   = _outFileToken
+                                          , _tokenLemma  = _outFileLemma
+                                          }
+                                     , _sentenceIndex = _outFileOrdIndex
+                                     , _relations     = [] 
+                                     }
+                                  , _outFileHead
+                                  , _outFileDepRel
+                                  )
+                                )
+

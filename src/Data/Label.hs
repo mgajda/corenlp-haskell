@@ -1,17 +1,15 @@
 
 
-module Data.Label 
-     ( Label(..)
-     , fromLabel
-     , toLabel
-     ) 
- where
-
+module Data.Label( module GHC.Generics
+                 , Label(..)
+                 , fromLabelText
+                 , toLabelText
+                 ) where
 
 
 
 import           Data.Map
-import           GHC.Generics
+import           GHC.Generics    (Generic,Rep(..),(:+:)(..))
 import           GHC.TypeLits
 import           Protolude       hiding(fromLabel)
 import qualified GHC.Generics    as G
@@ -26,12 +24,13 @@ class (Ord label) => Label label where
    reverseLabelMap = fromList [ (b,a) | (a,b) <- assocs labelMap]
 
 
-fromLabel :: (Label label) => Text -> Maybe label
-fromLabel t = lookup t labelMap
+fromLabelText :: (Label label) => Text -> Maybe label
+fromLabelText t = lookup t labelMap
 
-toLabel   :: (Label label) => label -> Text
-toLabel l =  fromMaybe (error "imposible branch on Data.Label") 
-          $  lookup l reverseLabelMap
+toLabelText   :: (Label label) => label -> Text
+toLabelText l =  fromMaybe (error "imposible branch on Data.Label") 
+              $  lookup l reverseLabelMap
+
 
 {- | The class `Label` represents types to be used as labels for CoreNLP, such POS sets or gramatical relations.
 
@@ -40,7 +39,7 @@ toLabel l =  fromMaybe (error "imposible branch on Data.Label")
      First to enable autoderive, set:
      
      ```
-     {-# LANGUAGE DeriveAnyClass #- }
+     { -# LANGUAGE DeriveAnyClass #- }
      ```
 
      now you can use it on any enumeration already deriving `Ord` and `Generic`, for example defining:
@@ -112,6 +111,7 @@ toLabel l =  fromMaybe (error "imposible branch on Data.Label")
 
 -}
 
+
 --------------------------------------------------------------------
 --------------------------------------------------------------------
 -- Private "default class" machinery:
@@ -144,6 +144,11 @@ instance (Label labelType) => GLabel (C1 meta1 (S1 meta2 (K1 meta3 labelType))) 
 -- Standard labels:
 
 instance (Label l1, Label l2)  => Label (Either l1 l2)  
+
+
+
+
+
 
 
 
