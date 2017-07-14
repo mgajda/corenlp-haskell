@@ -20,20 +20,22 @@ library
   
   exposed-modules:     Data.ParsedSentence
                  ,     Data.CoNLL
+                 ,     Data.Label
 
 
   default-extensions:          NoImplicitPrelude
                              , BangPatterns
                              , BinaryLiterals
-                             , DataKinds
                              , ConstraintKinds
+                             , DataKinds
+                             , DefaultSignatures
                              , DeriveFunctor
                              , DeriveGeneric
                              , DisambiguateRecordFields
                              , DuplicateRecordFields
                              , EmptyDataDecls
-                             , FlexibleInstances
                              , FlexibleContexts
+                             , FlexibleInstances
                              , FunctionalDependencies
                              , GADTs
                              , GeneralizedNewtypeDeriving
@@ -57,6 +59,7 @@ library
 
   build-depends:       protolude
                      , base
+                     , containers
                      , split
                      , text
                      
