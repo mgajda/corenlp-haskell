@@ -3,6 +3,7 @@
 
 module Data.ParsedSentence ( ParsedSentence(..)
                            , ParsedToken(..)
+                           , SyntaxNode(..)
                            , parseConNll
                            , example
                            ) where
@@ -15,10 +16,16 @@ import           Data.Map
 import           Protolude
 import           Text.Show.Pretty          (ppShow)
 
-data ParsedSentence pos rel = ParsedSentence
+data SyntaxNode pos rel = SyntaxNode
        { _token         :: ParsedToken pos 
        , _sentenceIndex :: Int
-       , _relations     :: [(rel,ParsedSentence pos rel)] 
+       , _relations     :: [(rel,SyntaxNode pos rel)] 
+       } deriving(Show,Read,Eq,Generic,Ord)
+
+data ParsedSentence pos rel = ParsedSentence
+       { _rootNode    :: SyntaxNode pos rel
+       , _indexToNode :: Map Int (SyntaxNode pos rel)
+       , _headToNode  :: Map Int [(rel, SyntaxNode pos rel)] -- ^ All relations having as "head" the given index  
        } deriving(Show,Read,Eq,Generic,Ord)
 
 data ParsedToken pos = ParsedToken
@@ -30,38 +37,42 @@ data ParsedToken pos = ParsedToken
 
 
 parseConNll :: (Label pos, Label rel) => Text -> Maybe [ParsedSentence pos rel]
-parseConNll file = traverse parsedConNllSentence =<< parseConllOutput file
+parseConNll file = undefined --traverse parsedConNllSentence =<< parseConllOutput file
 
 parsedConNllSentence :: [CorenlpCoNLL pos rel] -> Maybe (ParsedSentence pos rel)
-parsedConNllSentence conllLines = snd <$> listToMaybe (parsedSentenceFrom 0)
-
+parsedConNllSentence conllLines = do rootNode <- snd <$> listToMaybe (parsedSentenceFrom 0)
+                                     return ParsedSentence
+                                            { _rootNode    = rootNode
+                                            , _indexToNode =      fst <$> indexToNode
+                                            , _headToNode  = fmap fst <$> headToNode 
+                                            }
   where
 
 
-    partialParsed  = fromList $ partial <$> conllLines
+    indexToNode = fromList $ partial <$> conllLines
 
 
-    partialParsed' = fromListWith (++) [ (head_,[(x,i,rel)]) 
-                                       | (i,(x,head_,rel)) <- reverse $ assocs partialParsed
-                                       ] -- ^ we do not need to "reverse", but that would make
-                                         --   the result order closer to the original
+    headToNode  = fromListWith (++) [ (head_,[((rel,node),i)]) 
+                                    | (i,(node,(head_,rel))) <- reverse $ assocs indexToNode
+                                    ] -- ^ we do not need to "reverse", but that would make
+                                      --   the result order closer to the original
 
     
 
-    parsedSentenceFrom n = let relations = fromMaybe [] $ lookup n partialParsed'
+    parsedSentenceFrom n = let relations = fromMaybe [] $ lookup n headToNode
                             
                             in [ ( rel
                                  , sentenceNode{ _relations = parsedSentenceFrom i
                                                } 
                                  )
 
-                               | (sentenceNode,i,rel) <- relations
+                               | ((rel,sentenceNode),i) <- relations
                                ]
 
 
 
     partial CorenlpCoNLL{..} =  ( _outFileOrdIndex
-                                , ( ParsedSentence
+                                , ( SyntaxNode
                                      { _token = ParsedToken
                                           { _tokenPOS    = _outFilePOS
                                           , _tokenText   = _outFileToken
@@ -70,8 +81,8 @@ parsedConNllSentence conllLines = snd <$> listToMaybe (parsedSentenceFrom 0)
                                      , _sentenceIndex = _outFileOrdIndex
                                      , _relations     = [] 
                                      }
-                                  , _outFileHead
-                                  , _outFileDepRel
+                                  , ( _outFileHead, _outFileDepRel
+                                    )
                                   )
                                 )
 
