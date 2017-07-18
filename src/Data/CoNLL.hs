@@ -24,14 +24,14 @@ data CorenlpCoNLL pos rel = CorenlpCoNLL
 
 
 
-parseConllOutput :: (Label rel, Label pos) => Text -> Maybe [[CorenlpCoNLL rel pos]]
+parseConllOutput :: (TagLabel rel, TagLabel pos) => Text -> Maybe [[CorenlpCoNLL rel pos]]
 parseConllOutput fileContent = traverse formatGroup $ wordsBy (T.all isSpace) (T.lines fileContent)
 
-formatGroup :: (Label rel, Label pos) => [Text] -> Maybe [CorenlpCoNLL rel pos]
+formatGroup :: (TagLabel rel, TagLabel pos) => [Text] -> Maybe [CorenlpCoNLL rel pos]
 formatGroup = traverse formatLine
 
 
-formatLine :: (Label rel, Label pos) => Text -> Maybe (CorenlpCoNLL rel pos)
+formatLine :: (TagLabel rel, TagLabel pos) => Text -> Maybe (CorenlpCoNLL rel pos)
 formatLine l = case T.splitOn "\t" l of
                 [  outFileOrdIndex
                  , _outFileToken

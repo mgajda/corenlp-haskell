@@ -13,6 +13,7 @@ import           Data.CoNLL
 import           Data.CoNLL
 import           Data.Label
 import           Data.Map
+import           GHC.TypeLits
 import           Protolude
 import           Text.Show.Pretty          (ppShow)
 
@@ -36,8 +37,8 @@ data ParsedToken pos = ParsedToken
 
 
 
-parseConNll :: (Label pos, Label rel) => Text -> Maybe [ParsedSentence pos rel]
-parseConNll file = undefined --traverse parsedConNllSentence =<< parseConllOutput file
+parseConNll :: (TagLabel pos, TagLabel rel) => Text -> Maybe [ParsedSentence pos rel]
+parseConNll file = traverse parsedConNllSentence =<< parseConllOutput file
 
 parsedConNllSentence :: [CorenlpCoNLL pos rel] -> Maybe (ParsedSentence pos rel)
 parsedConNllSentence conllLines = do rootNode <- snd <$> listToMaybe (parsedSentenceFrom 0)
@@ -92,8 +93,9 @@ parsedConNllSentence conllLines = do rootNode <- snd <$> listToMaybe (parsedSent
 
 example :: FilePath -> IO ()
 example path = do rawText <- readFile path 
-                  let result :: Maybe [ParsedSentence POS REL]
-                      result = traverse parsedConNllSentence =<< parseConllOutput rawText
+                  let result :: Maybe [SyntaxNode POS REL]
+                      result =   fmap _rootNode 
+                             <$> (traverse parsedConNllSentence =<< parseConllOutput rawText)
                    
                   putStrLn $ ppShow result 
 
@@ -107,11 +109,15 @@ data POS = CC
          | MD
          | NN
          | PRP
-         | Question
-         | Semicolon
+         | Punctuation (SpelledAs ".") -- ^ Not just dots, at least it also includes question marks
+         | RB
+         | RBR
+         | Semicolon   (SpelledAs ",")
          | TO
          | VB
-         deriving(Show,Read,Eq,Ord,Generic,Label)
+         | VBD
+         | Quotes      (SpelledAs "''")
+         deriving(Show,Read,Eq,Ord,Generic,TagLabel)
 
 data REL = Acl
          | Amod
@@ -128,5 +134,5 @@ data REL = Acl
          | Nsubj
          | Punct
          | ROOT
-         deriving(Show,Read,Eq,Ord,Generic,Label)
+         deriving(Show,Read,Eq,Ord,Generic,TagLabel)
 

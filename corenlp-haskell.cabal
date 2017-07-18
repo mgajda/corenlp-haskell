@@ -54,6 +54,7 @@ library
                              , TemplateHaskell
                              , TupleSections
                              , TypeFamilies
+                             , TypeInType
                              , TypeOperators
                              , TypeSynonymInstances
 
