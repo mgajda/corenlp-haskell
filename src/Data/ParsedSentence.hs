@@ -37,11 +37,13 @@ data ParsedToken pos = ParsedToken
 
 
 
-parseConNll :: (TagLabel pos, TagLabel rel) => Text -> Maybe [ParsedSentence pos rel]
+parseConNll :: (TagLabel pos, TagLabel rel) => Text -> Either SyntaxErrorCoNLL [ParsedSentence pos rel]
 parseConNll file = traverse parsedConNllSentence =<< parseConllOutput file
 
-parsedConNllSentence :: [CorenlpCoNLL pos rel] -> Maybe (ParsedSentence pos rel)
-parsedConNllSentence conllLines = do rootNode <- snd <$> listToMaybe (parsedSentenceFrom 0)
+parsedConNllSentence :: [CorenlpCoNLL pos rel] -> Either SyntaxErrorCoNLL (ParsedSentence pos rel)
+parsedConNllSentence conllLines = do rootNode <- note TheresNoRoot 
+                                               $ snd <$> listToMaybe (parsedSentenceFrom 0)
+                                     
                                      return ParsedSentence
                                             { _rootNode    = rootNode
                                             , _indexToNode =      fst <$> indexToNode
@@ -93,7 +95,7 @@ parsedConNllSentence conllLines = do rootNode <- snd <$> listToMaybe (parsedSent
 
 example :: FilePath -> IO ()
 example path = do rawText <- readFile path 
-                  let result :: Maybe [SyntaxNode POS REL]
+                  let result :: Either SyntaxErrorCoNLL [SyntaxNode POS REL]
                       result =   fmap _rootNode 
                              <$> (traverse parsedConNllSentence =<< parseConllOutput rawText)
                    
@@ -103,6 +105,7 @@ example path = do rawText <- readFile path
 -- These are just to parse an example. (I've changed a couple of them, like the one for question mark
 -- to simplify it.
 data POS = CC
+         | CD
          | DT
          | IN
          | JJ
@@ -110,29 +113,39 @@ data POS = CC
          | NN
          | PRP
          | Punctuation (SpelledAs ".") -- ^ Not just dots, at least it also includes question marks
+         | Quotes      (SpelledAs "''")
+         | Quotes2     (SpelledAs "``")
          | RB
          | RBR
          | Semicolon   (SpelledAs ",")
          | TO
          | VB
          | VBD
-         | Quotes      (SpelledAs "''")
+         | VBP
+         | NNS
          deriving(Show,Read,Eq,Ord,Generic,TagLabel)
 
 data REL = Acl
+         | Advcl
+         | Advmod
          | Amod
          | Aux
+         | Neg
          | Case
          | Cc
          | Ccomp
+         | Nummod
+         | Cop
          | Compound
          | Conj
          | Det
+         | Dep
          | Dobj
          | Mark
          | Nmod
          | Nsubj
          | Punct
          | ROOT
+         | Xcomp
          deriving(Show,Read,Eq,Ord,Generic,TagLabel)
 
