@@ -1,21 +1,18 @@
 
-{-# LANGUAGE DeriveAnyClass #-}
-
 module Data.ParsedSentence ( ParsedSentence(..)
                            , ParsedToken(..)
                            , SyntaxNode(..)
                            , parseConNll
-                           , example
+                           , module Data.CoNLL
+                           , module Data.Label
                            ) where
 
 
-import           Data.CoNLL
 import           Data.CoNLL
 import           Data.Label
 import           Data.Map
 import           GHC.TypeLits
 import           Protolude
-import           Text.Show.Pretty          (ppShow)
 
 data SyntaxNode pos rel = SyntaxNode
        { _token         :: ParsedToken pos 
@@ -88,64 +85,4 @@ parsedConNllSentence conllLines = do rootNode <- note TheresNoRoot
                                     )
                                   )
                                 )
-
--------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------
--- TODO: move to another file.
-
-example :: FilePath -> IO ()
-example path = do rawText <- readFile path 
-                  let result :: Either SyntaxErrorCoNLL [SyntaxNode POS REL]
-                      result =   fmap _rootNode 
-                             <$> (traverse parsedConNllSentence =<< parseConllOutput rawText)
-                   
-                  putStrLn $ ppShow result 
-
-
--- These are just to parse an example. (I've changed a couple of them, like the one for question mark
--- to simplify it.
-data POS = CC
-         | CD
-         | DT
-         | IN
-         | JJ
-         | MD
-         | NN
-         | PRP
-         | Punctuation (SpelledAs ".") -- ^ Not just dots, at least it also includes question marks
-         | Quotes      (SpelledAs "''")
-         | Quotes2     (SpelledAs "``")
-         | RB
-         | RBR
-         | Semicolon   (SpelledAs ",")
-         | TO
-         | VB
-         | VBD
-         | VBP
-         | NNS
-         deriving(Show,Read,Eq,Ord,Generic,TagLabel)
-
-data REL = Acl
-         | Advcl
-         | Advmod
-         | Amod
-         | Aux
-         | Neg
-         | Case
-         | Cc
-         | Ccomp
-         | Nummod
-         | Cop
-         | Compound
-         | Conj
-         | Det
-         | Dep
-         | Dobj
-         | Mark
-         | Nmod
-         | Nsubj
-         | Punct
-         | ROOT
-         | Xcomp
-         deriving(Show,Read,Eq,Ord,Generic,TagLabel)
 

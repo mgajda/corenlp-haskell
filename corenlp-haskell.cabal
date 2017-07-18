@@ -21,6 +21,7 @@ library
   exposed-modules:     Data.ParsedSentence
                  ,     Data.CoNLL
                  ,     Data.Label
+                 ,     Examples
 
 
   default-extensions:          NoImplicitPrelude
