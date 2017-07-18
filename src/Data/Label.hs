@@ -9,6 +9,7 @@ module Data.Label( module GHC.Generics
 
 
 
+import           Data.Char
 import           Data.Map
 import           GHC.Generics    (Generic,Rep(..),(:+:)(..))
 import           GHC.TypeLits
@@ -27,7 +28,7 @@ class (Ord label) => TagLabel label where
 
 
 fromLabelText :: (TagLabel label) => Text -> Maybe label
-fromLabelText t = lookup (T.toLower t) labelMap
+fromLabelText t = lookup t labelMap
 
 toLabelText   :: (TagLabel label) => label -> Text
 toLabelText l =  fromMaybe (error "imposible branch on Data.Label") 
@@ -142,7 +143,11 @@ instance (GLabel f, GLabel g) => GLabel ( f :+: g) where
 
 -- | The label of a constructor without arguments is the constructor's name itself
 instance (KnownSymbol constructor) => GLabel (C1 ('MetaCons constructor a b) U1) where
-  gLabelMap _ = [( T.toLower . toSL $ symbolVal (Proxy :: Proxy constructor) , M1 U1)] 
+  gLabelMap _ = [( convert . toSL $ symbolVal (Proxy :: Proxy constructor) , M1 U1)] 
+    where
+      convert s = if T.any isLower s then T.toLower s
+                                     else s
+
 
 -- | The labels with a constructor with a single argument, are the labels of its argument 
 instance (TagLabel labelType) => GLabel (C1 meta1 (S1 meta2 (K1 meta3 labelType))) where
