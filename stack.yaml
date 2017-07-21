@@ -2,8 +2,12 @@ resolver: lts-8.11
 
 packages:
 - '.'
+- location:
+    git:    https://github.com/mgajda/haskell-conll.git
+    commit: cc5819290dee35294d761f328fd6ccf426dd8f77
 
-extra-deps: []
+extra-deps:
+- haskell-conll-0.1.0.0
 
 flags: {}
 

@@ -18,9 +18,7 @@ cabal-version:       >=1.10
 library
   hs-source-dirs:      src
   
-  exposed-modules:     Data.ParsedSentence
-                 ,     Data.CoNLL
-                 ,     Data.Label
+  exposed-modules:     Data.CoNLL
                  ,     Examples
 
 
@@ -61,6 +59,7 @@ library
 
   build-depends:       base
                      , containers
+                     , haskell-conll
                      , pretty-show
                      , protolude
                      , split

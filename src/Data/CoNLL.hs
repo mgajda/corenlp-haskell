@@ -1,13 +1,21 @@
 
-module Data.CoNLL ( CorenlpCoNLL(..)
+module Data.CoNLL ( CorenlpCoNLL
+                  , CorenlpTree
                   , SyntaxErrorCoNLL(..)
                   , parseConllOutput
+                  , parseCorenlpTrees
+                  , module Data.ConllToken
+                  , module Model.UniversalTreebank
+                  , module Data.SyntaxTree
                   ) where
 
 import           Data.Char
-import           Data.Label
+import           Data.ConllToken (ConllToken(..),SyntaxErrorCoNLL(..))
 import           Data.List
 import           Data.List.Split
+import           Data.SyntaxTree (SyntaxtTree(..),createSyntaxTree)
+import           Data.TagLabel
+import           Model.UniversalTreebank
 import           Protolude
 import qualified Data.Text as T
 
@@ -15,49 +23,41 @@ import qualified Data.Text as T
 -}
 
 -- | Raw representation of a line on a `CoNLL` file.
-data CorenlpCoNLL pos rel = CorenlpCoNLL
-         { _outFileOrdIndex :: Int
-         , _outFileToken    :: Text
-         , _outFileLemma    :: Text
-         , _outFilePOS      :: pos
-         , _outFileNER      :: Text
-         , _outFileHead     :: Int
-         , _outFileDepRel   :: rel
-         } deriving(Show,Read,Eq,Ord)
 
--- | SyntaxErrorCoNLL:  Reason                      LineNumber Culprit
---     |                 |                             |         |
---     v                 v                             v         v
-data SyntaxErrorCoNLL = UnkonwnPosTag                 Int       Text 
-                      | UnkwownRelTag                 Int       Text 
-                      | CoulNotParseInteger           Int       Text 
-                      | InvalidNumberOfElementsOnLine Int       Text 
-                      | TheresNoRoot
-                      deriving(Show,Read,Eq,Ord)
+type CorenlpCoNLL a = ConllToken POS () REL () a
+type CorenlpTree  a = SyntaxtTree POS () REL () a
 
 
+parseCorenlpTrees :: Text -> Either SyntaxErrorCoNLL [CorenlpTree Text]
+parseCorenlpTrees txt = traverse createSyntaxTree =<< parseConllOutput txt
 
-parseConllOutput :: (TagLabel rel, TagLabel pos) => Text -> Either SyntaxErrorCoNLL [[CorenlpCoNLL rel pos]]
+parseConllOutput :: Text -> Either SyntaxErrorCoNLL [[CorenlpCoNLL Text]]
 parseConllOutput fileContent = traverse formatGroup $ wordsBy (T.all isSpace . snd) (zip [1..] $ T.lines fileContent)
 
-formatGroup :: (TagLabel rel, TagLabel pos) => [(Int,Text)] -> Either SyntaxErrorCoNLL [CorenlpCoNLL rel pos]
+formatGroup :: [(Int,Text)] -> Either SyntaxErrorCoNLL [CorenlpCoNLL Text]
 formatGroup = traverse formatLine
 
 
-formatLine :: (TagLabel rel, TagLabel pos) => (Int,Text) -> Either SyntaxErrorCoNLL (CorenlpCoNLL rel pos)
+formatLine :: (Int,Text) -> Either SyntaxErrorCoNLL (CorenlpCoNLL Text)
 formatLine (n,l) = case T.splitOn "\t" l of
-                [  outFileOrdIndex
-                 , _outFileToken
-                 , _outFileLemma
-                 , outFilePOS
-                 , _outFileNER
-                 , outFileHead
-                 , outFileDepRel
-                 ]                  -> do _outFileOrdIndex <- parsingOn outFileOrdIndex (readMaybe.toSL)  CoulNotParseInteger 
-                                          _outFileHead     <- parsingOn outFileHead     (readMaybe.toSL)  CoulNotParseInteger
-                                          _outFileDepRel   <- parsingOn outFileDepRel   fromLabelText     UnkwownRelTag
-                                          _outFilePOS      <- parsingOn outFilePOS      fromLabelText     UnkonwnPosTag
-                                          return CorenlpCoNLL{..}
+                [  tnId
+                 , _tnWord
+                 , _tnLemma
+                 , tnPosCG
+                 , _ -- omitting NER TODO
+                 , tnHead
+                 , tnRel
+                 ]                  -> do _tnId     <- parsingOn tnId    (readMaybe.toSL)  CoulNotParseInteger 
+                                          _tnHead   <- parsingOn tnHead  (readMaybe.toSL)  CoulNotParseInteger
+                                          _tnRel    <- parsingOn tnRel   fromLabelText     UnkwownRelTag
+                                          _tnPosCG  <- parsingOn tnPosCG fromLabelText     UnkonwnPosTag
+                                          
+                                          return ConllToken{ _tnPosFG    = ()
+                                                           , _tnFeats    = ()
+                                                           , _tnHeadProj = ""
+                                                           , _tnRelProj  = ""
+                                                           , ..
+                                                           }
 
                 _                   -> do Left $ InvalidNumberOfElementsOnLine n l
   where
