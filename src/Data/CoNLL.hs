@@ -1,4 +1,4 @@
-
+{-# LANGUAGE DeriveAnyClass #-}
 module Data.CoNLL ( CorenlpCoNLL
                   , CorenlpTree
                   , SyntaxErrorCoNLL(..)
@@ -6,6 +6,7 @@ module Data.CoNLL ( CorenlpCoNLL
                   , parseCorenlpTrees
                   , module Data.ConllToken
                   , module Model.UniversalTreebank
+                  , module Model.PennTreebank
                   , module Data.SyntaxTree
                   ) where
 
@@ -16,6 +17,7 @@ import           Data.List.Split
 import           Data.SyntaxTree (SyntaxtTree(..),createSyntaxTree)
 import           Data.TagLabel
 import           Model.UniversalTreebank
+import           Model.PennTreebank
 import           Protolude
 import qualified Data.Text as T
 
@@ -64,3 +66,13 @@ formatLine (n,l) = case T.splitOn "\t" l of
     parsingOn :: Text -> (Text -> Maybe a) -> (Int -> Text -> SyntaxErrorCoNLL) -> Either SyntaxErrorCoNLL a
     parsingOn x parser errDesc  = note (errDesc n x) (parser x)
 -- TODO: use an actual TSV libraries so is resillent to corner cases (escapes problematic values).
+
+
+
+
+
+
+
+
+
+
