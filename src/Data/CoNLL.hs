@@ -26,8 +26,28 @@ import qualified Data.Text as T
 
 -- | Raw representation of a line on a `CoNLL` file.
 
-type CorenlpCoNLL a = ConllToken POS () REL () a
-type CorenlpTree  a = SyntaxtTree POS () REL () a
+type CorenlpCoNLL a = ConllToken POS () REL NER a
+type CorenlpTree  a = SyntaxtTree POS () REL NER a
+
+-- | Named Entity Recognition
+data NER = O
+         | CARDINAL 
+         | DATE 
+         | DURATION
+         | FACILITY 
+         | GPE
+         | LOCATION 
+         | MEASURE
+         | SET
+         | MISC
+         | MONEY
+         | NUMBER
+         | ORDINAL
+         | ORGANIZATION 
+         | PERCENT 
+         | PERSON 
+         deriving(Show,Eq,Read,Ord,Generic,TagLabel)
+
 
 
 parseCorenlpTrees :: Text -> Either SyntaxErrorCoNLL [CorenlpTree Text]
@@ -46,16 +66,16 @@ formatLine (n,l) = case T.splitOn "\t" l of
                  , _tnWord
                  , _tnLemma
                  , tnPosCG
-                 , _ -- omitting NER TODO
+                 , ner -- omitting NER TODO
                  , tnHead
                  , tnRel
                  ]                  -> do _tnId     <- parsingOn tnId    (readMaybe.toSL)  CoulNotParseInteger 
                                           _tnHead   <- parsingOn tnHead  (readMaybe.toSL)  CoulNotParseInteger
                                           _tnRel    <- parsingOn tnRel   fromLabelText     UnkwownRelTag
                                           _tnPosCG  <- parsingOn tnPosCG fromLabelText     UnkonwnPosTag
+                                          _tnFeats  <- parsingOn ner     fromLabelText     UnkwownRelTag
                                           
                                           return ConllToken{ _tnPosFG    = ()
-                                                           , _tnFeats    = ()
                                                            , _tnHeadProj = ""
                                                            , _tnRelProj  = ""
                                                            , ..
