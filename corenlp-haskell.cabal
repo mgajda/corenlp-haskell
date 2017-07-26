@@ -111,11 +111,12 @@ test-suite corenlp-parser-test-suite
   build-depends:       corenlp-haskell
                      , protolude
                      , base
+                     , directory
                      , hspec
+                     , QuickCheck
                      , tasty
                      , tasty-hspec
                      , tasty-quickcheck
-                     , QuickCheck
 
   default-extensions:  NoImplicitPrelude
                      , OverloadedStrings

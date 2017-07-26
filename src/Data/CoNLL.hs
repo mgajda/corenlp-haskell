@@ -32,13 +32,12 @@ type CorenlpTree  a = SyntaxtTree POS () REL NER a
 -- | Named Entity Recognition
 data NER = O
          | CARDINAL 
-         | DATE 
+         | DATE
          | DURATION
          | FACILITY 
          | GPE
          | LOCATION 
          | MEASURE
-         | SET
          | MISC
          | MONEY
          | NUMBER
@@ -46,6 +45,8 @@ data NER = O
          | ORGANIZATION 
          | PERCENT 
          | PERSON 
+         | SET
+         | TIME
          deriving(Show,Eq,Read,Ord,Generic,TagLabel)
 
 
