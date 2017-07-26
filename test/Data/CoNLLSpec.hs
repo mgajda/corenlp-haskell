@@ -19,7 +19,13 @@ spec = describe "the conll parser"                $ do
             gatherErrFromParsing "examples" `shouldReturn` []
           
           it "must produce the expected output"   $ do
-            pendingWith "TODO"
+            input  <- liftIO $ readFile "examples/inputs.txt.conll"
+            output <- liftIO $ readFile "examples/inputs.txt.conll.result"
+            
+            either (const Nothing) Just (parseCorenlpTrees input) 
+              `shouldBe` 
+                readMaybe (toSL output)
+
 
 
 
@@ -34,4 +40,8 @@ getEveryConllFile path = do xs <- getDirectoryContents path
 parseEveryFile   :: [FilePath] -> IO [Maybe SyntaxErrorCoNLL]
 parseEveryFile = mapM $ fmap (either Just (const Nothing) .parseCorenlpTrees) . readFile
 -- fmap parseCorenlpTrees . readFile path
+
+
+
+-- inputs.txt.conll.result
 
