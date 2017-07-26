@@ -1,0 +1,1060 @@
+[ Node
+    { rootLabel =
+        ConllToken
+          { _tnId = 3
+          , _tnWord = "write"
+          , _tnLemma = "write"
+          , _tnPosCG = VB
+          , _tnPosFG = ()
+          , _tnFeats = O
+          , _tnHead = 0
+          , _tnRel = ROOT
+          , _tnHeadProj = ""
+          , _tnRelProj = ""
+          }
+    , subForest =
+        [ Node
+            { rootLabel =
+                ConllToken
+                  { _tnId = 31
+                  , _tnWord = "?"
+                  , _tnLemma = "?"
+                  , _tnPosCG = Terminator SymbolProxy
+                  , _tnPosFG = ()
+                  , _tnFeats = O
+                  , _tnHead = 3
+                  , _tnRel = Punct
+                  , _tnHeadProj = ""
+                  , _tnRelProj = ""
+                  }
+            , subForest = []
+            }
+        , Node
+            { rootLabel =
+                ConllToken
+                  { _tnId = 10
+                  , _tnWord = "use"
+                  , _tnLemma = "use"
+                  , _tnPosCG = VB
+                  , _tnPosFG = ()
+                  , _tnFeats = O
+                  , _tnHead = 3
+                  , _tnRel = Ccomp
+                  , _tnHeadProj = ""
+                  , _tnRelProj = ""
+                  }
+            , subForest =
+                [ Node
+                    { rootLabel =
+                        ConllToken
+                          { _tnId = 13
+                          , _tnWord = "case"
+                          , _tnLemma = "case"
+                          , _tnPosCG = NN
+                          , _tnPosFG = ()
+                          , _tnFeats = O
+                          , _tnHead = 10
+                          , _tnRel = Nmod
+                          , _tnHeadProj = ""
+                          , _tnRelProj = ""
+                          }
+                    , subForest =
+                        [ Node
+                            { rootLabel =
+                                ConllToken
+                                  { _tnId = 15
+                                  , _tnWord = "provide"
+                                  , _tnLemma = "provide"
+                                  , _tnPosCG = VB
+                                  , _tnPosFG = ()
+                                  , _tnFeats = O
+                                  , _tnHead = 13
+                                  , _tnRel = Acl
+                                  , _tnHeadProj = ""
+                                  , _tnRelProj = ""
+                                  }
+                            , subForest =
+                                [ Node
+                                    { rootLabel =
+                                        ConllToken
+                                          { _tnId = 16
+                                          , _tnWord = "record"
+                                          , _tnLemma = "record"
+                                          , _tnPosCG = NN
+                                          , _tnPosFG = ()
+                                          , _tnFeats = O
+                                          , _tnHead = 15
+                                          , _tnRel = Dobj
+                                          , _tnHeadProj = ""
+                                          , _tnRelProj = ""
+                                          }
+                                    , subForest =
+                                        [ Node
+                                            { rootLabel =
+                                                ConllToken
+                                                  { _tnId = 30
+                                                  , _tnWord = "tagging"
+                                                  , _tnLemma = "tagging"
+                                                  , _tnPosCG = NN
+                                                  , _tnPosFG = ()
+                                                  , _tnFeats = O
+                                                  , _tnHead = 16
+                                                  , _tnRel = Conj
+                                                  , _tnHeadProj = ""
+                                                  , _tnRelProj = ""
+                                                  }
+                                            , subForest =
+                                                [ Node
+                                                    { rootLabel =
+                                                        ConllToken
+                                                          { _tnId = 29
+                                                          , _tnWord = "expression"
+                                                          , _tnLemma = "expression"
+                                                          , _tnPosCG = NN
+                                                          , _tnPosFG = ()
+                                                          , _tnFeats = O
+                                                          , _tnHead = 30
+                                                          , _tnRel = Compound
+                                                          , _tnHeadProj = ""
+                                                          , _tnRelProj = ""
+                                                          }
+                                                    , subForest = []
+                                                    }
+                                                , Node
+                                                    { rootLabel =
+                                                        ConllToken
+                                                          { _tnId = 28
+                                                          , _tnWord = "referential"
+                                                          , _tnLemma = "referential"
+                                                          , _tnPosCG = JJ
+                                                          , _tnPosFG = ()
+                                                          , _tnFeats = O
+                                                          , _tnHead = 30
+                                                          , _tnRel = Amod
+                                                          , _tnHeadProj = ""
+                                                          , _tnRelProj = ""
+                                                          }
+                                                    , subForest = []
+                                                    }
+                                                ]
+                                            }
+                                        , Node
+                                            { rootLabel =
+                                                ConllToken
+                                                  { _tnId = 27
+                                                  , _tnWord = "and"
+                                                  , _tnLemma = "and"
+                                                  , _tnPosCG = CC
+                                                  , _tnPosFG = ()
+                                                  , _tnFeats = O
+                                                  , _tnHead = 16
+                                                  , _tnRel = Cc
+                                                  , _tnHeadProj = ""
+                                                  , _tnRelProj = ""
+                                                  }
+                                            , subForest = []
+                                            }
+                                        , Node
+                                            { rootLabel =
+                                                ConllToken
+                                                  { _tnId = 26
+                                                  , _tnWord = ","
+                                                  , _tnLemma = ","
+                                                  , _tnPosCG = Coma SymbolProxy
+                                                  , _tnPosFG = ()
+                                                  , _tnFeats = O
+                                                  , _tnHead = 16
+                                                  , _tnRel = Punct
+                                                  , _tnHeadProj = ""
+                                                  , _tnRelProj = ""
+                                                  }
+                                            , subForest = []
+                                            }
+                                        , Node
+                                            { rootLabel =
+                                                ConllToken
+                                                  { _tnId = 22
+                                                  , _tnWord = "part"
+                                                  , _tnLemma = "part"
+                                                  , _tnPosCG = NN
+                                                  , _tnPosFG = ()
+                                                  , _tnFeats = O
+                                                  , _tnHead = 16
+                                                  , _tnRel = Conj
+                                                  , _tnHeadProj = ""
+                                                  , _tnRelProj = ""
+                                                  }
+                                            , subForest =
+                                                [ Node
+                                                    { rootLabel =
+                                                        ConllToken
+                                                          { _tnId = 25
+                                                          , _tnWord = "tagging"
+                                                          , _tnLemma = "tagging"
+                                                          , _tnPosCG = NN
+                                                          , _tnPosFG = ()
+                                                          , _tnFeats = O
+                                                          , _tnHead = 22
+                                                          , _tnRel = Nmod
+                                                          , _tnHeadProj = ""
+                                                          , _tnRelProj = ""
+                                                          }
+                                                    , subForest =
+                                                        [ Node
+                                                            { rootLabel =
+                                                                ConllToken
+                                                                  { _tnId = 24
+                                                                  , _tnWord = "speech"
+                                                                  , _tnLemma = "speech"
+                                                                  , _tnPosCG = NN
+                                                                  , _tnPosFG = ()
+                                                                  , _tnFeats = O
+                                                                  , _tnHead = 25
+                                                                  , _tnRel = Compound
+                                                                  , _tnHeadProj = ""
+                                                                  , _tnRelProj = ""
+                                                                  }
+                                                            , subForest = []
+                                                            }
+                                                        , Node
+                                                            { rootLabel =
+                                                                ConllToken
+                                                                  { _tnId = 23
+                                                                  , _tnWord = "of"
+                                                                  , _tnLemma = "of"
+                                                                  , _tnPosCG = IN
+                                                                  , _tnPosFG = ()
+                                                                  , _tnFeats = O
+                                                                  , _tnHead = 25
+                                                                  , _tnRel = Case
+                                                                  , _tnHeadProj = ""
+                                                                  , _tnRelProj = ""
+                                                                  }
+                                                            , subForest = []
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        , Node
+                                            { rootLabel =
+                                                ConllToken
+                                                  { _tnId = 21
+                                                  , _tnWord = ","
+                                                  , _tnLemma = ","
+                                                  , _tnPosCG = Coma SymbolProxy
+                                                  , _tnPosFG = ()
+                                                  , _tnFeats = O
+                                                  , _tnHead = 16
+                                                  , _tnRel = Punct
+                                                  , _tnHeadProj = ""
+                                                  , _tnRelProj = ""
+                                                  }
+                                            , subForest = []
+                                            }
+                                        , Node
+                                            { rootLabel =
+                                                ConllToken
+                                                  { _tnId = 20
+                                                  , _tnWord = "tree"
+                                                  , _tnLemma = "tree"
+                                                  , _tnPosCG = NN
+                                                  , _tnPosFG = ()
+                                                  , _tnFeats = O
+                                                  , _tnHead = 16
+                                                  , _tnRel = Nmod
+                                                  , _tnHeadProj = ""
+                                                  , _tnRelProj = ""
+                                                  }
+                                            , subForest =
+                                                [ Node
+                                                    { rootLabel =
+                                                        ConllToken
+                                                          { _tnId = 19
+                                                          , _tnWord = "syntax"
+                                                          , _tnLemma = "syntax"
+                                                          , _tnPosCG = NN
+                                                          , _tnPosFG = ()
+                                                          , _tnFeats = O
+                                                          , _tnHead = 20
+                                                          , _tnRel = Compound
+                                                          , _tnHeadProj = ""
+                                                          , _tnRelProj = ""
+                                                          }
+                                                    , subForest = []
+                                                    }
+                                                , Node
+                                                    { rootLabel =
+                                                        ConllToken
+                                                          { _tnId = 18
+                                                          , _tnWord = "both"
+                                                          , _tnLemma = "both"
+                                                          , _tnPosCG = DT
+                                                          , _tnPosFG = ()
+                                                          , _tnFeats = O
+                                                          , _tnHead = 20
+                                                          , _tnRel = Det
+                                                          , _tnHeadProj = ""
+                                                          , _tnRelProj = ""
+                                                          }
+                                                    , subForest = []
+                                                    }
+                                                , Node
+                                                    { rootLabel =
+                                                        ConllToken
+                                                          { _tnId = 17
+                                                          , _tnWord = "of"
+                                                          , _tnLemma = "of"
+                                                          , _tnPosCG = IN
+                                                          , _tnPosFG = ()
+                                                          , _tnFeats = O
+                                                          , _tnHead = 20
+                                                          , _tnRel = Case
+                                                          , _tnHeadProj = ""
+                                                          , _tnRelProj = ""
+                                                          }
+                                                    , subForest = []
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                , Node
+                                    { rootLabel =
+                                        ConllToken
+                                          { _tnId = 14
+                                          , _tnWord = "to"
+                                          , _tnLemma = "to"
+                                          , _tnPosCG = TO
+                                          , _tnPosFG = ()
+                                          , _tnFeats = O
+                                          , _tnHead = 15
+                                          , _tnRel = Mark
+                                          , _tnHeadProj = ""
+                                          , _tnRelProj = ""
+                                          }
+                                    , subForest = []
+                                    }
+                                ]
+                            }
+                        , Node
+                            { rootLabel =
+                                ConllToken
+                                  { _tnId = 12
+                                  , _tnWord = "this"
+                                  , _tnLemma = "this"
+                                  , _tnPosCG = DT
+                                  , _tnPosFG = ()
+                                  , _tnFeats = O
+                                  , _tnHead = 13
+                                  , _tnRel = Det
+                                  , _tnHeadProj = ""
+                                  , _tnRelProj = ""
+                                  }
+                            , subForest = []
+                            }
+                        , Node
+                            { rootLabel =
+                                ConllToken
+                                  { _tnId = 11
+                                  , _tnWord = "in"
+                                  , _tnLemma = "in"
+                                  , _tnPosCG = IN
+                                  , _tnPosFG = ()
+                                  , _tnFeats = O
+                                  , _tnHead = 13
+                                  , _tnRel = Case
+                                  , _tnHeadProj = ""
+                                  , _tnRelProj = ""
+                                  }
+                            , subForest = []
+                            }
+                        ]
+                    }
+                , Node
+                    { rootLabel =
+                        ConllToken
+                          { _tnId = 9
+                          , _tnWord = "would"
+                          , _tnLemma = "would"
+                          , _tnPosCG = MD
+                          , _tnPosFG = ()
+                          , _tnFeats = O
+                          , _tnHead = 10
+                          , _tnRel = Aux
+                          , _tnHeadProj = ""
+                          , _tnRelProj = ""
+                          }
+                    , subForest = []
+                    }
+                , Node
+                    { rootLabel =
+                        ConllToken
+                          { _tnId = 8
+                          , _tnWord = "you"
+                          , _tnLemma = "you"
+                          , _tnPosCG = PRP
+                          , _tnPosFG = ()
+                          , _tnFeats = O
+                          , _tnHead = 10
+                          , _tnRel = Nsubj
+                          , _tnHeadProj = ""
+                          , _tnRelProj = ""
+                          }
+                    , subForest = []
+                    }
+                , Node
+                    { rootLabel =
+                        ConllToken
+                          { _tnId = 7
+                          , _tnWord = "that"
+                          , _tnLemma = "that"
+                          , _tnPosCG = IN
+                          , _tnPosFG = ()
+                          , _tnFeats = O
+                          , _tnHead = 10
+                          , _tnRel = Mark
+                          , _tnHeadProj = ""
+                          , _tnRelProj = ""
+                          }
+                    , subForest = []
+                    }
+                ]
+            }
+        , Node
+            { rootLabel =
+                ConllToken
+                  { _tnId = 6
+                  , _tnWord = "structure"
+                  , _tnLemma = "structure"
+                  , _tnPosCG = NN
+                  , _tnPosFG = ()
+                  , _tnFeats = O
+                  , _tnHead = 3
+                  , _tnRel = Dobj
+                  , _tnHeadProj = ""
+                  , _tnRelProj = ""
+                  }
+            , subForest =
+                [ Node
+                    { rootLabel =
+                        ConllToken
+                          { _tnId = 5
+                          , _tnWord = "ADT"
+                          , _tnLemma = "adt"
+                          , _tnPosCG = NN
+                          , _tnPosFG = ()
+                          , _tnFeats = O
+                          , _tnHead = 6
+                          , _tnRel = Compound
+                          , _tnHeadProj = ""
+                          , _tnRelProj = ""
+                          }
+                    , subForest = []
+                    }
+                , Node
+                    { rootLabel =
+                        ConllToken
+                          { _tnId = 4
+                          , _tnWord = "the"
+                          , _tnLemma = "the"
+                          , _tnPosCG = DT
+                          , _tnPosFG = ()
+                          , _tnFeats = O
+                          , _tnHead = 6
+                          , _tnRel = Det
+                          , _tnHeadProj = ""
+                          , _tnRelProj = ""
+                          }
+                    , subForest = []
+                    }
+                ]
+            }
+        , Node
+            { rootLabel =
+                ConllToken
+                  { _tnId = 2
+                  , _tnWord = "you"
+                  , _tnLemma = "you"
+                  , _tnPosCG = PRP
+                  , _tnPosFG = ()
+                  , _tnFeats = O
+                  , _tnHead = 3
+                  , _tnRel = Nsubj
+                  , _tnHeadProj = ""
+                  , _tnRelProj = ""
+                  }
+            , subForest = []
+            }
+        , Node
+            { rootLabel =
+                ConllToken
+                  { _tnId = 1
+                  , _tnWord = "Could"
+                  , _tnLemma = "could"
+                  , _tnPosCG = MD
+                  , _tnPosFG = ()
+                  , _tnFeats = O
+                  , _tnHead = 3
+                  , _tnRel = Aux
+                  , _tnHeadProj = ""
+                  , _tnRelProj = ""
+                  }
+            , subForest = []
+            }
+        ]
+    }
+, Node
+    { rootLabel =
+        ConllToken
+          { _tnId = 17
+          , _tnWord = "alone"
+          , _tnLemma = "alone"
+          , _tnPosCG = RB
+          , _tnPosFG = ()
+          , _tnFeats = O
+          , _tnHead = 0
+          , _tnRel = ROOT
+          , _tnHeadProj = ""
+          , _tnRelProj = ""
+          }
+    , subForest =
+        [ Node
+            { rootLabel =
+                ConllToken
+                  { _tnId = 18
+                  , _tnWord = "."
+                  , _tnLemma = "."
+                  , _tnPosCG = Terminator SymbolProxy
+                  , _tnPosFG = ()
+                  , _tnFeats = O
+                  , _tnHead = 17
+                  , _tnRel = Punct
+                  , _tnHeadProj = ""
+                  , _tnRelProj = ""
+                  }
+            , subForest = []
+            }
+        , Node
+            { rootLabel =
+                ConllToken
+                  { _tnId = 16
+                  , _tnWord = "not"
+                  , _tnLemma = "not"
+                  , _tnPosCG = RB
+                  , _tnPosFG = ()
+                  , _tnFeats = O
+                  , _tnHead = 17
+                  , _tnRel = Neg
+                  , _tnHeadProj = ""
+                  , _tnRelProj = ""
+                  }
+            , subForest = []
+            }
+        , Node
+            { rootLabel =
+                ConllToken
+                  { _tnId = 15
+                  , _tnWord = "are"
+                  , _tnLemma = "be"
+                  , _tnPosCG = VBP
+                  , _tnPosFG = ()
+                  , _tnFeats = O
+                  , _tnHead = 17
+                  , _tnRel = Cop
+                  , _tnHeadProj = ""
+                  , _tnRelProj = ""
+                  }
+            , subForest = []
+            }
+        , Node
+            { rootLabel =
+                ConllToken
+                  { _tnId = 14
+                  , _tnWord = "you"
+                  , _tnLemma = "you"
+                  , _tnPosCG = PRP
+                  , _tnPosFG = ()
+                  , _tnFeats = O
+                  , _tnHead = 17
+                  , _tnRel = Nsubj
+                  , _tnHeadProj = ""
+                  , _tnRelProj = ""
+                  }
+            , subForest = []
+            }
+        , Node
+            { rootLabel =
+                ConllToken
+                  { _tnId = 13
+                  , _tnWord = ","
+                  , _tnLemma = ","
+                  , _tnPosCG = Coma SymbolProxy
+                  , _tnPosFG = ()
+                  , _tnFeats = O
+                  , _tnHead = 17
+                  , _tnRel = Punct
+                  , _tnHeadProj = ""
+                  , _tnRelProj = ""
+                  }
+            , subForest = []
+            }
+        , Node
+            { rootLabel =
+                ConllToken
+                  { _tnId = 6
+                  , _tnWord = "thought"
+                  , _tnLemma = "think"
+                  , _tnPosCG = VBD
+                  , _tnPosFG = ()
+                  , _tnFeats = O
+                  , _tnHead = 17
+                  , _tnRel = Advcl
+                  , _tnHeadProj = ""
+                  , _tnRelProj = ""
+                  }
+            , subForest =
+                [ Node
+                    { rootLabel =
+                        ConllToken
+                          { _tnId = 12
+                          , _tnWord = "''"
+                          , _tnLemma = "''"
+                          , _tnPosCG = Quotes SymbolProxy
+                          , _tnPosFG = ()
+                          , _tnFeats = O
+                          , _tnHead = 6
+                          , _tnRel = Punct
+                          , _tnHeadProj = ""
+                          , _tnRelProj = ""
+                          }
+                    , subForest = []
+                    }
+                , Node
+                    { rootLabel =
+                        ConllToken
+                          { _tnId = 11
+                          , _tnWord = "equally"
+                          , _tnLemma = "equally"
+                          , _tnPosCG = RB
+                          , _tnPosFG = ()
+                          , _tnFeats = O
+                          , _tnHead = 6
+                          , _tnRel = Advmod
+                          , _tnHeadProj = ""
+                          , _tnRelProj = ""
+                          }
+                    , subForest = []
+                    }
+                , Node
+                    { rootLabel =
+                        ConllToken
+                          { _tnId = 8
+                          , _tnWord = "more"
+                          , _tnLemma = "more"
+                          , _tnPosCG = RBR
+                          , _tnPosFG = ()
+                          , _tnFeats = O
+                          , _tnHead = 6
+                          , _tnRel = Xcomp
+                          , _tnHeadProj = ""
+                          , _tnRelProj = ""
+                          }
+                    , subForest =
+                        [ Node
+                            { rootLabel =
+                                ConllToken
+                                  { _tnId = 10
+                                  , _tnWord = "less"
+                                  , _tnLemma = "less"
+                                  , _tnPosCG = RBR
+                                  , _tnPosFG = ()
+                                  , _tnFeats = O
+                                  , _tnHead = 8
+                                  , _tnRel = Conj
+                                  , _tnHeadProj = ""
+                                  , _tnRelProj = ""
+                                  }
+                            , subForest = []
+                            }
+                        , Node
+                            { rootLabel =
+                                ConllToken
+                                  { _tnId = 9
+                                  , _tnWord = "or"
+                                  , _tnLemma = "or"
+                                  , _tnPosCG = CC
+                                  , _tnPosFG = ()
+                                  , _tnFeats = O
+                                  , _tnHead = 8
+                                  , _tnRel = Cc
+                                  , _tnHeadProj = ""
+                                  , _tnRelProj = ""
+                                  }
+                            , subForest = []
+                            }
+                        , Node
+                            { rootLabel =
+                                ConllToken
+                                  { _tnId = 7
+                                  , _tnWord = "``"
+                                  , _tnLemma = "``"
+                                  , _tnPosCG = Quotes2 SymbolProxy
+                                  , _tnPosFG = ()
+                                  , _tnFeats = O
+                                  , _tnHead = 8
+                                  , _tnRel = Punct
+                                  , _tnHeadProj = ""
+                                  , _tnRelProj = ""
+                                  }
+                            , subForest = []
+                            }
+                        ]
+                    }
+                , Node
+                    { rootLabel =
+                        ConllToken
+                          { _tnId = 5
+                          , _tnWord = "you"
+                          , _tnLemma = "you"
+                          , _tnPosCG = PRP
+                          , _tnPosFG = ()
+                          , _tnFeats = O
+                          , _tnHead = 6
+                          , _tnRel = Nsubj
+                          , _tnHeadProj = ""
+                          , _tnRelProj = ""
+                          }
+                    , subForest = []
+                    }
+                , Node
+                    { rootLabel =
+                        ConllToken
+                          { _tnId = 4
+                          , _tnWord = "reflection"
+                          , _tnLemma = "reflection"
+                          , _tnPosCG = NN
+                          , _tnPosFG = ()
+                          , _tnFeats = O
+                          , _tnHead = 6
+                          , _tnRel = Nmod
+                          , _tnHeadProj = ""
+                          , _tnRelProj = ""
+                          }
+                    , subForest =
+                        [ Node
+                            { rootLabel =
+                                ConllToken
+                                  { _tnId = 3
+                                  , _tnWord = "quick"
+                                  , _tnLemma = "quick"
+                                  , _tnPosCG = JJ
+                                  , _tnPosFG = ()
+                                  , _tnFeats = O
+                                  , _tnHead = 4
+                                  , _tnRel = Amod
+                                  , _tnHeadProj = ""
+                                  , _tnRelProj = ""
+                                  }
+                            , subForest = []
+                            }
+                        , Node
+                            { rootLabel =
+                                ConllToken
+                                  { _tnId = 2
+                                  , _tnWord = "on"
+                                  , _tnLemma = "on"
+                                  , _tnPosCG = IN
+                                  , _tnPosFG = ()
+                                  , _tnFeats = O
+                                  , _tnHead = 4
+                                  , _tnRel = Case
+                                  , _tnHeadProj = ""
+                                  , _tnRelProj = ""
+                                  }
+                            , subForest = []
+                            }
+                        ]
+                    }
+                , Node
+                    { rootLabel =
+                        ConllToken
+                          { _tnId = 1
+                          , _tnWord = "If"
+                          , _tnLemma = "if"
+                          , _tnPosCG = IN
+                          , _tnPosFG = ()
+                          , _tnFeats = O
+                          , _tnHead = 6
+                          , _tnRel = Mark
+                          , _tnHeadProj = ""
+                          , _tnRelProj = ""
+                          }
+                    , subForest = []
+                    }
+                ]
+            }
+        ]
+    }
+, Node
+    { rootLabel =
+        ConllToken
+          { _tnId = 2
+          , _tnWord = "asked"
+          , _tnLemma = "ask"
+          , _tnPosCG = VBD
+          , _tnPosFG = ()
+          , _tnFeats = O
+          , _tnHead = 0
+          , _tnRel = ROOT
+          , _tnHeadProj = ""
+          , _tnRelProj = ""
+          }
+    , subForest =
+        [ Node
+            { rootLabel =
+                ConllToken
+                  { _tnId = 16
+                  , _tnWord = "."
+                  , _tnLemma = "."
+                  , _tnPosCG = Terminator SymbolProxy
+                  , _tnPosFG = ()
+                  , _tnFeats = O
+                  , _tnHead = 2
+                  , _tnRel = Punct
+                  , _tnHeadProj = ""
+                  , _tnRelProj = ""
+                  }
+            , subForest = []
+            }
+        , Node
+            { rootLabel =
+                ConllToken
+                  { _tnId = 11
+                  , _tnWord = "had"
+                  , _tnLemma = "have"
+                  , _tnPosCG = VBD
+                  , _tnPosFG = ()
+                  , _tnFeats = O
+                  , _tnHead = 2
+                  , _tnRel = Conj
+                  , _tnHeadProj = ""
+                  , _tnRelProj = ""
+                  }
+            , subForest =
+                [ Node
+                    { rootLabel =
+                        ConllToken
+                          { _tnId = 15
+                          , _tnWord = "intuition"
+                          , _tnLemma = "intuition"
+                          , _tnPosCG = NN
+                          , _tnPosFG = ()
+                          , _tnFeats = O
+                          , _tnHead = 11
+                          , _tnRel = Dobj
+                          , _tnHeadProj = ""
+                          , _tnRelProj = ""
+                          }
+                    , subForest =
+                        [ Node
+                            { rootLabel =
+                                ConllToken
+                                  { _tnId = 14
+                                  , _tnWord = "initial"
+                                  , _tnLemma = "initial"
+                                  , _tnPosCG = JJ
+                                  , _tnPosFG = ()
+                                  , _tnFeats = O
+                                  , _tnHead = 15
+                                  , _tnRel = Amod
+                                  , _tnHeadProj = ""
+                                  , _tnRelProj = ""
+                                  }
+                            , subForest = []
+                            }
+                        , Node
+                            { rootLabel =
+                                ConllToken
+                                  { _tnId = 13
+                                  , _tnWord = "same"
+                                  , _tnLemma = "same"
+                                  , _tnPosCG = JJ
+                                  , _tnPosFG = ()
+                                  , _tnFeats = O
+                                  , _tnHead = 15
+                                  , _tnRel = Amod
+                                  , _tnHeadProj = ""
+                                  , _tnRelProj = ""
+                                  }
+                            , subForest = []
+                            }
+                        , Node
+                            { rootLabel =
+                                ConllToken
+                                  { _tnId = 12
+                                  , _tnWord = "the"
+                                  , _tnLemma = "the"
+                                  , _tnPosCG = DT
+                                  , _tnPosFG = ()
+                                  , _tnFeats = O
+                                  , _tnHead = 15
+                                  , _tnRel = Det
+                                  , _tnHeadProj = ""
+                                  , _tnRelProj = ""
+                                  }
+                            , subForest = []
+                            }
+                        ]
+                    }
+                , Node
+                    { rootLabel =
+                        ConllToken
+                          { _tnId = 10
+                          , _tnWord = "all"
+                          , _tnLemma = "all"
+                          , _tnPosCG = DT
+                          , _tnPosFG = ()
+                          , _tnFeats = O
+                          , _tnHead = 11
+                          , _tnRel = Advmod
+                          , _tnHeadProj = ""
+                          , _tnRelProj = ""
+                          }
+                    , subForest = []
+                    }
+                , Node
+                    { rootLabel =
+                        ConllToken
+                          { _tnId = 9
+                          , _tnWord = "they"
+                          , _tnLemma = "they"
+                          , _tnPosCG = PRP
+                          , _tnPosFG = ()
+                          , _tnFeats = O
+                          , _tnHead = 11
+                          , _tnRel = Nsubj
+                          , _tnHeadProj = ""
+                          , _tnRelProj = ""
+                          }
+                    , subForest = []
+                    }
+                ]
+            }
+        , Node
+            { rootLabel =
+                ConllToken
+                  { _tnId = 8
+                  , _tnWord = "and"
+                  , _tnLemma = "and"
+                  , _tnPosCG = CC
+                  , _tnPosFG = ()
+                  , _tnFeats = O
+                  , _tnHead = 2
+                  , _tnRel = Cc
+                  , _tnHeadProj = ""
+                  , _tnRelProj = ""
+                  }
+            , subForest = []
+            }
+        , Node
+            { rootLabel =
+                ConllToken
+                  { _tnId = 5
+                  , _tnWord = "PhDs"
+                  , _tnLemma = "phd"
+                  , _tnPosCG = NNS
+                  , _tnPosFG = ()
+                  , _tnFeats = O
+                  , _tnHead = 2
+                  , _tnRel = Dobj
+                  , _tnHeadProj = ""
+                  , _tnRelProj = ""
+                  }
+            , subForest =
+                [ Node
+                    { rootLabel =
+                        ConllToken
+                          { _tnId = 7
+                          , _tnWord = "question"
+                          , _tnLemma = "question"
+                          , _tnPosCG = NN
+                          , _tnPosFG = ()
+                          , _tnFeats = O
+                          , _tnHead = 5
+                          , _tnRel = Dep
+                          , _tnHeadProj = ""
+                          , _tnRelProj = ""
+                          }
+                    , subForest =
+                        [ Node
+                            { rootLabel =
+                                ConllToken
+                                  { _tnId = 6
+                                  , _tnWord = "this"
+                                  , _tnLemma = "this"
+                                  , _tnPosCG = DT
+                                  , _tnPosFG = ()
+                                  , _tnFeats = O
+                                  , _tnHead = 7
+                                  , _tnRel = Det
+                                  , _tnHeadProj = ""
+                                  , _tnRelProj = ""
+                                  }
+                            , subForest = []
+                            }
+                        ]
+                    }
+                , Node
+                    { rootLabel =
+                        ConllToken
+                          { _tnId = 4
+                          , _tnWord = "super-smart"
+                          , _tnLemma = "super-smart"
+                          , _tnPosCG = JJ
+                          , _tnPosFG = ()
+                          , _tnFeats = O
+                          , _tnHead = 5
+                          , _tnRel = Amod
+                          , _tnHeadProj = ""
+                          , _tnRelProj = ""
+                          }
+                    , subForest = []
+                    }
+                , Node
+                    { rootLabel =
+                        ConllToken
+                          { _tnId = 3
+                          , _tnWord = "5"
+                          , _tnLemma = "5"
+                          , _tnPosCG = CD
+                          , _tnPosFG = ()
+                          , _tnFeats = NUMBER
+                          , _tnHead = 5
+                          , _tnRel = Nummod
+                          , _tnHeadProj = ""
+                          , _tnRelProj = ""
+                          }
+                    , subForest = []
+                    }
+                ]
+            }
+        , Node
+            { rootLabel =
+                ConllToken
+                  { _tnId = 1
+                  , _tnWord = "I"
+                  , _tnLemma = "I"
+                  , _tnPosCG = PRP
+                  , _tnPosFG = ()
+                  , _tnFeats = O
+                  , _tnHead = 2
+                  , _tnRel = Nsubj
+                  , _tnHeadProj = ""
+                  , _tnRelProj = ""
+                  }
+            , subForest = []
+            }
+        ]
+    }
+]
