@@ -16,8 +16,9 @@ import           Data.List
 import           Data.List.Split
 import           Data.SyntaxTree (SyntaxtTree(..),createSyntaxTree)
 import           Data.TagLabel
-import           Model.UniversalTreebank
+import           Model.NerCoreNlp
 import           Model.PennTreebank
+import           Model.UniversalTreebank
 import           Protolude
 import qualified Data.Text as T
 
@@ -28,26 +29,6 @@ import qualified Data.Text as T
 
 type CorenlpCoNLL a = ConllToken POS () REL NER a
 type CorenlpTree  a = SyntaxtTree POS () REL NER a
-
--- | Named Entity Recognition
-data NER = O
-         | CARDINAL 
-         | DATE
-         | DURATION
-         | FACILITY 
-         | GPE
-         | LOCATION 
-         | MEASURE
-         | MISC
-         | MONEY
-         | NUMBER
-         | ORDINAL
-         | ORGANIZATION 
-         | PERCENT 
-         | PERSON 
-         | SET
-         | TIME
-         deriving(Show,Eq,Read,Ord,Generic,TagLabel)
 
 
 
@@ -67,7 +48,7 @@ formatLine (n,l) = case T.splitOn "\t" l of
                  , _tnWord
                  , _tnLemma
                  , tnPosCG
-                 , ner -- omitting NER TODO
+                 , ner
                  , tnHead
                  , tnRel
                  ]                  -> do _tnId     <- parsingOn tnId    (readMaybe.toSL)  CoulNotParseInteger 

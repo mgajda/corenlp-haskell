@@ -27,8 +27,6 @@ spec = describe "the conll parser"                $ do
                 readMaybe (toSL output)
 
 
-
-
 gatherErrFromParsing :: FilePath -> IO [SyntaxErrorCoNLL]
 gatherErrFromParsing path = catMaybes <$> (parseEveryFile =<< getEveryConllFile path)
 
@@ -36,12 +34,5 @@ getEveryConllFile :: FilePath -> IO [FilePath]
 getEveryConllFile path = do xs <- getDirectoryContents path
                             return . fmap ((path<>"/")<>) $ filter (isSuffixOf ".conll") xs
 
-
 parseEveryFile   :: [FilePath] -> IO [Maybe SyntaxErrorCoNLL]
 parseEveryFile = mapM $ fmap (either Just (const Nothing) .parseCorenlpTrees) . readFile
--- fmap parseCorenlpTrees . readFile path
-
-
-
--- inputs.txt.conll.result
-
