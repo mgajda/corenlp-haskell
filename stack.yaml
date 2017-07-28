@@ -4,7 +4,7 @@ packages:
 - '.'
 - location:
     git:    https://github.com/mgajda/haskell-conll.git
-    commit: 2048f6065031bdb5c2d9dd41fbdab83ee7b33867
+    commit: c83b42cb1f1e8184d6379d04ae9f24579ef92365
 
 extra-deps:
 - haskell-conll-0.1.0.0
